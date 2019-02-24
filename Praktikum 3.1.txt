@@ -1,0 +1,165 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 5.5.22 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database latihan1;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| latihan1           |
+| mysql              |
+| performance_schema |
+| test               |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use latihan1;
+Database changed
+mysql> create table Biodata
+    -> (Nim int (9) primary key,
+    -> Nama varchar (18) not null,
+    -> Kota varchar (25) not null,
+    -> Jenis_Kelamin varchar (10) not null,
+    -> Tanggal_Lahir date);
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> desc Biodata;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| Nim           | int(9)      | NO   | PRI | NULL    |       |
+| Nama          | varchar(18) | NO   |     | NULL    |       |
+| Kota          | varchar(25) | NO   |     | NULL    |       |
+| Jenis_Kelamin | varchar(10) | NO   |     | NULL    |       |
+| Tanggal_Lahir | date        | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+5 rows in set (0.04 sec)
+
+mysql> insert into Biodata
+    -> (Nim, Nama, Kota, Jenis_Kelamin, Tanggal_Lahir)
+    -> values
+    -> ("11223344", "Ari Santoso", "Bekasi", "Laki-Laki", "1998-10-12"),
+    -> ("11223345", "Ario Talib", "Cikarang", "Laki-Laki", "1999-11-16"),
+    -> ("11223346", "Diana Marlina", "Karawang", "Perempuan", "1997-12-01"),
+    -> ("11223347", "Lisa Ayu", "Bekasi", "Perempuan", "1996-01-02"),
+    -> ("11223348", "Tiara Wahidah", "Bekasi", "Perempuan", "1980-02-05"),
+    -> ("11223349", "Anto Sinaga", "Cikarang", "Laki-Laki", "1988-03-10");
+Query OK, 6 rows affected (0.08 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from Biodata;
++----------+---------------+----------+---------------+---------------+
+| Nim      | Nama          | Kota     | Jenis_Kelamin | Tanggal_Lahir |
++----------+---------------+----------+---------------+---------------+
+| 11223344 | Ari Santoso   | Bekasi   | Laki-Laki     | 1998-10-12    |
+| 11223345 | Ario Talib    | Cikarang | Laki-Laki     | 1999-11-16    |
+| 11223346 | Diana Marlina | Karawang | Perempuan     | 1997-12-01    |
+| 11223347 | Lisa Ayu      | Bekasi   | Perempuan     | 1996-01-02    |
+| 11223348 | Tiara Wahidah | Bekasi   | Perempuan     | 1980-02-05    |
+| 11223349 | Anto Sinaga   | Cikarang | Laki-Laki     | 1988-03-10    |
++----------+---------------+----------+---------------+---------------+
+6 rows in set (0.02 sec)
+
+mysql> update Biodata
+    -> set Tanggal_Lahir = "1979-08-31"
+    -> where Nim = "11223344";
+Query OK, 1 row affected (0.16 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Biodata;
++----------+---------------+----------+---------------+---------------+
+| Nim      | Nama          | Kota     | Jenis_Kelamin | Tanggal_Lahir |
++----------+---------------+----------+---------------+---------------+
+| 11223344 | Ari Santoso   | Bekasi   | Laki-Laki     | 1979-08-31    |
+| 11223345 | Ario Talib    | Cikarang | Laki-Laki     | 1999-11-16    |
+| 11223346 | Diana Marlina | Karawang | Perempuan     | 1997-12-01    |
+| 11223347 | Lisa Ayu      | Bekasi   | Perempuan     | 1996-01-02    |
+| 11223348 | Tiara Wahidah | Bekasi   | Perempuan     | 1980-02-05    |
+| 11223349 | Anto Sinaga   | Cikarang | Laki-Laki     | 1988-03-10    |
++----------+---------------+----------+---------------+---------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from Biodata;
++----------+---------------+----------+---------------+---------------+
+| Nim      | Nama          | Kota     | Jenis_Kelamin | Tanggal_Lahir |
++----------+---------------+----------+---------------+---------------+
+| 11223344 | Ari Santoso   | Bekasi   | Laki-Laki     | 1979-08-31    |
+| 11223345 | Ario Talib    | Cikarang | Laki-Laki     | 1999-11-16    |
+| 11223346 | Diana Marlina | Karawang | Perempuan     | 1997-12-01    |
+| 11223347 | Lisa Ayu      | Bekasi   | Perempuan     | 1996-01-02    |
+| 11223348 | Tiara Wahidah | Bekasi   | Perempuan     | 1980-02-05    |
+| 11223349 | Anto Sinaga   | Cikarang | Laki-Laki     | 1988-03-10    |
++----------+---------------+----------+---------------+---------------+
+6 rows in set (0.00 sec)
+
+mysql> select Nim, Nama, Kota, Jenis_Kelamin, Tanggal_Lahir from Biodata
+    -> where Nim = "11223344";
++----------+-------------+--------+---------------+---------------+
+| Nim      | Nama        | Kota   | Jenis_Kelamin | Tanggal_Lahir |
++----------+-------------+--------+---------------+---------------+
+| 11223344 | Ari Santoso | Bekasi | Laki-Laki     | 1979-08-31    |
++----------+-------------+--------+---------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> delete from Biodata Where Nama = "Diana Marlina";
+Query OK, 1 row affected (0.12 sec)
+
+mysql> select * from Biodata;
++----------+---------------+----------+---------------+---------------+
+| Nim      | Nama          | Kota     | Jenis_Kelamin | Tanggal_Lahir |
++----------+---------------+----------+---------------+---------------+
+| 11223344 | Ari Santoso   | Bekasi   | Laki-Laki     | 1979-08-31    |
+| 11223345 | Ario Talib    | Cikarang | Laki-Laki     | 1999-11-16    |
+| 11223347 | Lisa Ayu      | Bekasi   | Perempuan     | 1996-01-02    |
+| 11223348 | Tiara Wahidah | Bekasi   | Perempuan     | 1980-02-05    |
+| 11223349 | Anto Sinaga   | Cikarang | Laki-Laki     | 1988-03-10    |
++----------+---------------+----------+---------------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> select Nama, Tanggal_Lahir from Biodata
+    -> where Tanggal_Lahir >= "1996-01-02"
+    -> order by Nama;
++------------+---------------+
+| Nama       | Tanggal_Lahir |
++------------+---------------+
+| Ario Talib | 1999-11-16    |
+| Lisa Ayu   | 1996-01-02    |
++------------+---------------+
+2 rows in set (0.07 sec)
+
+mysql> select * from Biodata
+    -> where Kota = "Bekasi"
+    -> and Jenis_Kelamin = "Perempuan";
++----------+---------------+--------+---------------+---------------+
+| Nim      | Nama          | Kota   | Jenis_Kelamin | Tanggal_Lahir |
++----------+---------------+--------+---------------+---------------+
+| 11223347 | Lisa Ayu      | Bekasi | Perempuan     | 1996-01-02    |
+| 11223348 | Tiara Wahidah | Bekasi | Perempuan     | 1980-02-05    |
++----------+---------------+--------+---------------+---------------+
+2 rows in set (0.05 sec)
+
+mysql> select Nama, Kota from Biodata
+    -> where Kota = "Bekasi";
++---------------+--------+
+| Nama          | Kota   |
++---------------+--------+
+| Ari Santoso   | Bekasi |
+| Lisa Ayu      | Bekasi |
+| Tiara Wahidah | Bekasi |
++---------------+--------+
+3 rows in set (0.00 sec)
+
+mysql>

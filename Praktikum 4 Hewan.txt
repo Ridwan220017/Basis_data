@@ -1,0 +1,36 @@
+12345
+create database Hewan;
+use Hewan;
+create table Hewan
+(Nama varchar (15) not null,
+Owner varchar (15) not null,
+Species varchar (15) not null,
+Sex varchar (15) not null,
+Birth varchar (15) not null,
+Death varchar (15) not null);
+desc Hewan;
+insert into Hewan
+(Nama, Owner, Species, Sex, Birth, Death)
+values
+("Pufball", "Diane", "Hamster", "F", "1999-03-03", "NULL"),
+("Claws", "Gwen", "Cat", "F", "1994-03-17", "NULL"),
+("Fuffy", "Harold", "Cat", "N", "1993-02-04", "NULL"),
+("Bufyy", "Harold", "Dog", "F", "1989-05-13", "NULL"),
+("Pong", "Benny", "Dog", "F", "1990-08-27", "NULL");
+insert into Hewan
+values
+("Browser", "Diane", "Dog", "M", "1989-08-11", "1995-07-29"),
+("Chirpy", "Gwen", "Bird", "F", "1998-09-11", "NULL"),
+("Wister", "Gwen", "Bird", "Null", "19997-12-12", "NULL"),
+("Slim ", "Benny", "Snake", "M", "19996-04-29", "NULL");
+select Owner count(Species) as jumlah from Hewan group by Owner;
+select Species count(Owner) as jumlah from Hewan group by Species;
+select Sex count(Species) as jumlah from Hewan group by Sex;
+select Species, Sex, count(Owner) as jumlah from Hewan group by Species, Sex;
+select Species, Sex, count(Species) as jumlah from Hewan
+Where Species <> "Hamster"
+and Species <> "Bird"
+and Species <> "Snake";
+select Sex, count(Species) as jumlah from Hewan
+where Sex <> "Null"
+group by Species, Sex;

@@ -1,0 +1,33 @@
+create database Pegawai;
+use Pegawai;
+create table Biodata
+(Id_Pegawai char (8) primary key,
+Nama_Depan varchar (14) not null,
+Nama_Belakang varchar (14) not null,
+Email varchar (18) not null,
+Telepon varchar (14) not null,
+Tanggal_Kontrak varchar (16) not null,
+Id_Job varchar (15) not null,
+Gaji varchar (18) not null,
+Tunjangan varchar (17) not null);
+desc Biodata;
+insert into Biodata
+values 
+("E001", "ferry", "gunawan", "ferry@yahoo.com", "081567892378", "2005-09-01", "L001", "2000000", "5000000"),
+("E002", "aris", "guniardi", "aris@yahoo.com", "082567890123", "2006-09-01", "L002", "2000000", "2000000"),
+("E003", "faiz", "ahmad", "faiz@gamil.com", "083878692345", "2007-04-02", "L003", "1500000", "NULL"),
+("E004", "emma", "bunton", "emma@gmail.com", "087896574532", "2006-03-02", "L004", "1500000", "0"),
+("E005", "mike", "scoff", "mike@yahoo.com", "089865372891", "2007-03-05", "L005", "1250000", "0"),
+("E006", "licoln", "burows", "linc@yahoo.com", "085674352819", "2008-04-07", "L006", "1250000", "NULL");
+select * from Biodata
+where Gaji <> "2000000" and Gaji <> "1250000";
+select * from Biodata
+where Tunjangan = "NULL";
+select * from Biodata
+where Tunjangan <> "null";
+select count(*) from Biodata;
+select SUM(Gaji) as jumlah from Biodata;
+select AVG(Gaji) as rerata from Biodata;
+select MIN(Gaji) from Biodata;
+select MAX(Gaji) from Biodata;
+

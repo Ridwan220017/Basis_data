@@ -1,0 +1,105 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 21
+Server version: 5.5.22 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database latihan02;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;use latihan02;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| latihan02          |
+| mysql              |
+| performance_schema |
+| test               |
++--------------------+
+5 rows in set (0.00 sec)
+
+Database changed
+mysql> use latihan02;
+Database changed
+mysql> create table data_mahasiswa (NIM int(10), NAMA varchar(50), ALAMAT text);
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> desc data_mahasiswa;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| NIM    | int(10)     | YES  |     | NULL    |       |
+| NAMA   | varchar(50) | YES  |     | NULL    |       |
+| ALAMAT | text        | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.10 sec)
+
+mysql> insert into data_mahasiswa (NIM, NAMA, ALAMAT)
+    -> VALUE ("1105", "Ridwan", "Purwakarta");
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select * from data_mahasiswa;
++------+--------+------------+
+| NIM  | NAMA   | ALAMAT     |
++------+--------+------------+
+| 1105 | Ridwan | Purwakarta |
++------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> insert into data_mahasiswa (NIM, NAMA, ALAMAT)
+    -> VALUE ("1106", "Agus", "Karawang"), ("1107", "Indra", "Karawang"), ("1108", "Ahmad", "JAMBI");
+Query OK, 3 rows affected (0.08 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from data_mahasiswa;
++------+--------+------------+
+| NIM  | NAMA   | ALAMAT     |
++------+--------+------------+
+| 1105 | Ridwan | Purwakarta |
+| 1106 | Agus   | Karawang   |
+| 1107 | Indra  | Karawang   |
+| 1108 | Ahmad  | JAMBI      |
++------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> delete from data_mahasiswa where nim="1108";
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from data_mahasiswa;
++------+--------+------------+
+| NIM  | NAMA   | ALAMAT     |
++------+--------+------------+
+| 1105 | Ridwan | Purwakarta |
+| 1106 | Agus   | Karawang   |
+| 1107 | Indra  | Karawang   |
++------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from data_mahasiswa ORDER BY NIM desc;
++------+--------+------------+
+| NIM  | NAMA   | ALAMAT     |
++------+--------+------------+
+| 1107 | Indra  | Karawang   |
+| 1106 | Agus   | Karawang   |
+| 1105 | Ridwan | Purwakarta |
++------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from data_mahasiswa where alamat="Karawang";
++------+-------+----------+
+| NIM  | NAMA  | ALAMAT   |
++------+-------+----------+
+| 1106 | Agus  | Karawang |
+| 1107 | Indra | Karawang |
++------+-------+----------+
+2 rows in set (0.00 sec)
+
+mysql>
